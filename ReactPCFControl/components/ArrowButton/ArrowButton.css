@@ -1,0 +1,18 @@
+.ArrowButton {
+    flex: 1;
+    border: none;
+    margin: 3px;
+    cursor: pointer;
+    background-color: white;
+    color: gray;
+    aspect-ratio: 1 / 1;
+}
+
+.ArrowButton:hover {
+    background-color: rgb(232, 244, 255);
+    color: rgb(83, 83, 83);
+}
+
+.ArrowButton:active {
+    background-color: rgb(193, 225, 255);
+}

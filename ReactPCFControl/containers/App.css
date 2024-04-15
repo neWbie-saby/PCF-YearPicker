@@ -1,0 +1,26 @@
+.YearPicker {
+  position: absolute;
+}
+
+.YearGrid {
+  height: 225px;
+  width: 225px;
+  position: absolute;
+  right: 37px;
+  border: 0.5px solid rgb(218, 218, 218);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(218, 218, 218, 1);
+  z-index: 1;
+  background-color: white;
+}
+
+.MainInput {
+  display: flex;
+  justify-content: space-around;
+}
+
+.YearRow {
+  display: flex;
+  justify-content: space-between;
+  aspect-ratio: 5 / 1;
+}
