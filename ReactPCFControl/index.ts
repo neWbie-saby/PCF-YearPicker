@@ -8,7 +8,9 @@ export class ReactPCFControl implements ComponentFramework.ReactControl<IInputs,
     private _value: any;
     private props: AppProps = {
         selectedYear: "",
-        updateYear: this._updateYear.bind(this)
+        updateYear: this._updateYear.bind(this),
+        startYearLimit: 0,
+        endYearLimit: 0
     }
     /**
      * Empty constructor.
@@ -38,6 +40,8 @@ export class ReactPCFControl implements ComponentFramework.ReactControl<IInputs,
      */
     public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
         this.props.selectedYear = context.parameters.yearProperty.raw || "";
+        this.props.startYearLimit = context.parameters.startYearProperty.raw || 0;
+        this.props.endYearLimit = context.parameters.endYearProperty.raw || 0;
         return React.createElement(
             App,
             this.props

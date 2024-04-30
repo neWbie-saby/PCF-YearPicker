@@ -8,7 +8,9 @@ import { TextField } from '../components/TextField/TextField';
 
 export interface AppProps {
   selectedYear: string,
-  updateYear: (x: string) => void
+  updateYear: (x: string) => void,
+  startYearLimit: number,
+  endYearLimit: number
 }
 
 export interface AppState {
@@ -18,13 +20,28 @@ export interface AppState {
 }
 
 export class App extends React.Component<AppProps, AppState> {
+
+  generateYearArray = (startYear: number): number[][] => {
+    let matrix: number[][] = [];
+    for(let i = 0; i < 4; i++){
+      let row: number[] = [];
+      for(let j = 0; j < 4; j++){
+        let ind = startYear + i * 4 + j;
+        row.push(ind);
+      }
+      matrix.push(row);
+    }
+    return matrix;
+  }
+
   state = {
-    years: [
-      [2000, 2001, 2002, 2003],
-      [2004, 2005, 2006, 2007],
-      [2008, 2009, 2010, 2011],
-      [2012, 2013, 2014, 2015]
-    ],
+    // years: [
+    //   [2000, 2001, 2002, 2003],
+    //   [2004, 2005, 2006, 2007],
+    //   [2008, 2009, 2010, 2011],
+    //   [2012, 2013, 2014, 2015]
+    // ],
+    years: this.generateYearArray(this.props.startYearLimit),
     isVisible: false,
     currYear: this.props.selectedYear
   }
@@ -73,14 +90,36 @@ export class App extends React.Component<AppProps, AppState> {
           {this.state.isVisible && 
           <div className='YearGrid'> 
             <div className='YearRow'>
-              <RangeButton first={this.state.years[0][0]} last={this.state.years[this.state.years.length - 1][this.state.years[this.state.years.length - 1].length - 1]}/>
-              <ArrowButton arrow={String.fromCharCode(8593)} ClickHandler={this.upRangeChange}/>
-              <ArrowButton arrow={String.fromCharCode(8595)} ClickHandler={this.downRangeChange}/>
+              <RangeButton 
+              first={this.state.years[0][0]} 
+              last={this.state.years[3][3] < this.props.endYearLimit ? this.state.years[3][3] : this.props.endYearLimit}/>
+              <ArrowButton 
+              arrow={String.fromCharCode(8593)} 
+              ClickHandler={this.upRangeChange} 
+              startYear={this.props.startYearLimit} 
+              endYear={this.props.endYearLimit}
+              firstYear={this.state.years[0][0]}
+              lastYear={this.state.years[3][3]}
+              isUpArrow={true} />
+
+              <ArrowButton 
+              arrow={String.fromCharCode(8595)} 
+              ClickHandler={this.downRangeChange} 
+              startYear={this.props.startYearLimit} 
+              endYear={this.props.endYearLimit}
+              firstYear={this.state.years[0][0]}
+              lastYear={this.state.years[3][3]}
+              isUpArrow={false} />
             </div>
             {this.state.years.map((subArr, index) =>  (
               <div key={index} className='YearRow'>
                 {subArr.map((eachYear, subIndex) => (
-                  <YearButton key={[eachYear, index, subIndex].join()} name={eachYear.toString()} ClickHandler={this.clickYear}/>
+                  <YearButton 
+                    key={[eachYear, index, subIndex].join()} 
+                    name={eachYear.toString()} 
+                    ClickHandler={this.clickYear} 
+                    startYear={this.props.startYearLimit} 
+                    endYear={this.props.endYearLimit} />
                 ))}
               </div>
             ))}

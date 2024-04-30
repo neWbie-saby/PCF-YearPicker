@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="ReactYearPicker" constructor="ReactPCFControl" version="0.0.3" display-name-key="ReactPCFControl" description-key="ReactPCFControl description" control-type="virtual" >
+  <control namespace="ReactYearPicker" constructor="ReactPCFControl" version="0.0.5" display-name-key="ReactPCFControl" description-key="ReactPCFControl description" control-type="virtual" >
     <!--external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
     If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
     Example1:
@@ -19,6 +19,8 @@
     </external-service-usage>
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="yearProperty" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="startYearProperty" display-name-key="Property_StartYear_Display_Key" description-key="Property_StartYear_Desc_Key" of-type="Whole.None" usage="input" required="true" />
+    <property name="endYearProperty" display-name-key="Property_EndYear_Display_Key" description-key="Property_EndYear_Desc_Key" of-type="Whole.None" usage="input" required="true" />
     <!--
       Property node's of-type attribute can be of-type-group attribute.
       Example:

@@ -16,3 +16,12 @@
 .ArrowButton:active {
     background-color: rgb(193, 225, 255);
 }
+
+.ArrowButtonDisabled {
+    flex: 1;
+    border: none;
+    margin: 3px;
+    background-color: white;
+    color: white;
+    aspect-ratio: 1 / 1;
+}
